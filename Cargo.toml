@@ -1,8 +1,13 @@
 [package]
 name = "sixel"
-version = "0.3.1"
-authors = ["AdnoC <adam.r.cutler@gmail.com>"]
+version = "0.3.2"
+description = "A safe Rust wrapper for libsixel"
+authors = ["rabite0", "AdnoC <adam.r.cutler@gmail.com>"]
+homepage = "https://github.com/rabite0/sixel-rs"
+repository = "https://github.com/rabite0/sixel-rs"
 license = "MIT"
+keywords = ["terminal", "graphics", "image", "sixel"]
+categories = ["api-bindings", "graphics", "multimedia::images"]
 
 [dependencies]
 sixel-sys = "0.3.1"
