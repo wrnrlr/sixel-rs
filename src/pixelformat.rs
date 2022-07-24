@@ -1,5 +1,4 @@
 use sixel::PixelFormat;
-
 use std::os::raw::c_int;
 
 pub trait PixelFormatChan {
@@ -13,7 +12,6 @@ impl PixelFormatChan for PixelFormat {
 }
 
 // Piston Image library used for reference for this bit. Thanks
-
 pub trait Pixel {
     fn num_channels() -> u8;
 
@@ -21,9 +19,9 @@ pub trait Pixel {
 
     fn channels_mut(&mut self) -> &mut [u8];
 
-    fn from_slice<'a>(&'a [u8]) -> &'a Self;
+    fn from_slice<'a>(_: &'a [u8]) -> &'a Self;
 
-    fn from_slice_mut<'a>(&'a mut [u8]) -> &'a mut Self;
+    fn from_slice_mut<'a>(_: &'a mut [u8]) -> &'a mut Self;
 }
 
 macro_rules! define_colors {

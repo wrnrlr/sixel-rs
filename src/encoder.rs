@@ -1,9 +1,7 @@
 use optflags;
-use pixelformat::{Pixel, PixelFormatChan};
+use pixelformat::PixelFormatChan;
 use sixel::*;
-use status;
-
-use status::Status;
+use status::{self, Status};
 use std::cell::Cell;
 use std::os::raw;
 use std::path::Path;
