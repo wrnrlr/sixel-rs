@@ -1,19 +1,15 @@
 #![allow(dead_code)]
 
-extern crate sixel_sys as sixel;
-extern crate semver_parser;
-
-
-#[macro_use]
 extern crate lazy_static;
+extern crate semver_parser;
+extern crate sixel_sys as sixel;
 
-pub mod status;
 pub mod encoder;
+pub mod status;
 // Should it be pub?
-pub mod optflags;
 mod msc;
+pub mod optflags;
 pub mod pixelformat;
-
 
 #[cfg(test)]
 mod tests {

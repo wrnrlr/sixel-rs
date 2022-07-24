@@ -12,9 +12,6 @@ impl PixelFormatChan for PixelFormat {
     }
 }
 
-
-
-
 // Piston Image library used for reference for this bit. Thanks
 
 pub trait Pixel {
@@ -75,7 +72,7 @@ macro_rules! define_colors {
     }
 }
 
-define_colors!{
+define_colors! {
     Color1, 1;
     Color2, 2;
     Color3, 3;

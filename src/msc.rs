@@ -1,7 +1,7 @@
-use std::path::Path;
-use std::ffi::CString;
 use status;
 use status::Status;
+use std::ffi::CString;
+use std::path::Path;
 
 pub fn path_to_c_str(path: &Path) -> Status<CString> {
     #[cfg(unix)]

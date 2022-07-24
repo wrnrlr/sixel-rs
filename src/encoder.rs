@@ -1,10 +1,10 @@
-use sixel::*;
-use status;
 use optflags;
 use pixelformat::{Pixel, PixelFormatChan};
+use sixel::*;
+use status;
 
-use std::cell::Cell;
 use status::Status;
+use std::cell::Cell;
 use std::os::raw;
 use std::path::Path;
 
@@ -16,15 +16,13 @@ impl Encoder {
     pub fn new() -> Status<Encoder> {
         use std::ptr;
 
-        let mut encoder: *mut sixel::Encoder  = ptr::null_mut() as *mut _;
+        let mut encoder: *mut sixel::Encoder = ptr::null_mut() as *mut _;
 
         unsafe {
-            let result = sixel_encoder_new(&mut encoder,
-                                           ptr::null_mut() as *mut Allocator);
+            let result = sixel_encoder_new(&mut encoder, ptr::null_mut() as *mut Allocator);
 
             status::from_libsixel(result)?;
         }
-
 
         Ok(Encoder { encoder })
     }
@@ -37,7 +35,6 @@ impl Encoder {
         }
 
         Encoder { encoder }
-
     }
 
     pub fn encode_file(&self, source: &Path) -> Status<()> {
@@ -57,13 +54,15 @@ impl Encoder {
         let palette: Vec<crate::pixelformat::Color3> = vec![];
 
         let result = unsafe {
-            sixel_encoder_encode_bytes(self.encoder,
-                                       frame.pixels.as_ptr() as *mut c_uchar,
-                                       frame.width as c_int,
-                                       frame.height as c_int,
-                                       frame.format,
-                                       palette.as_ptr() as *mut c_uchar,
-                                       palette.len() as c_int)
+            sixel_encoder_encode_bytes(
+                self.encoder,
+                frame.pixels.as_ptr() as *mut c_uchar,
+                frame.width as c_int,
+                frame.height as c_int,
+                frame.format,
+                palette.as_ptr() as *mut c_uchar,
+                palette.len() as c_int,
+            )
         };
         status::from_libsixel(result)
     }
@@ -91,8 +90,8 @@ impl Encoder {
     }
 
     pub fn set_bit_mode(&self, mode: optflags::BitMode) -> Status<()> {
-        use std::ptr;
         use optflags::BitMode;
+        use std::ptr;
 
         let mode_flag = match mode {
             BitMode::SevenBit => Optflag::UseSevenBitMode,
@@ -131,7 +130,6 @@ impl Encoder {
             Builtin(palette) => self.use_builtin_palette(palette),
             Mapfile(file) => self.use_mapfile(file),
             Highcolor => self.use_high_color(),
-
         }
     }
 
@@ -436,7 +434,9 @@ impl Clone for Encoder {
             sixel_encoder_ref(self.encoder);
         }
 
-        Encoder { encoder: self.encoder }
+        Encoder {
+            encoder: self.encoder,
+        }
     }
 }
 
@@ -447,7 +447,6 @@ impl Drop for Encoder {
         }
     }
 }
-
 
 // TODO: Get working with stack values
 pub struct Canceller {
@@ -598,10 +597,12 @@ impl QuickFrame {
     pub fn color(&self, row: usize, column: usize, depth: usize) -> u8 {
         let pix_depth = self.format.channels_per_pixel() as usize;
 
-        assert!(depth < pix_depth,
-                "Gave a depth of {} when a pixel is only {} bytes deep",
-                depth,
-                pix_depth);
+        assert!(
+            depth < pix_depth,
+            "Gave a depth of {} when a pixel is only {} bytes deep",
+            depth,
+            pix_depth
+        );
 
         let row_len = self.width * pix_depth;
 
@@ -614,10 +615,12 @@ impl QuickFrame {
     pub fn set_color(&mut self, row: usize, column: usize, depth: usize, color: u8) {
         let pix_depth = self.format.channels_per_pixel() as usize;
 
-        assert!(depth < pix_depth,
-                "Gave a depth of {} when a pixel is only {} bytes deep",
-                depth,
-                pix_depth);
+        assert!(
+            depth < pix_depth,
+            "Gave a depth of {} when a pixel is only {} bytes deep",
+            depth,
+            pix_depth
+        );
 
         let row_len = self.width * pix_depth;
 
