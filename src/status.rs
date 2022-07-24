@@ -1,3 +1,22 @@
+pub const SIXEL_OK: ::std::os::raw::c_uint = 0;
+pub const SIXEL_FALSE: ::std::os::raw::c_uint = 4096;
+pub const SIXEL_INTERRUPTED: ::std::os::raw::c_uint = 1;
+pub const SIXEL_BAD_ALLOCATION: ::std::os::raw::c_uint = 4353;
+pub const SIXEL_BAD_ARGUMENT: ::std::os::raw::c_uint = 4354;
+pub const SIXEL_BAD_INPUT: ::std::os::raw::c_uint = 4355;
+pub const SIXEL_RUNTIME_ERROR: ::std::os::raw::c_uint = 4352;
+pub const SIXEL_LOGIC_ERROR: ::std::os::raw::c_uint = 4608;
+pub const SIXEL_NOT_IMPLEMENTED: ::std::os::raw::c_uint = 4865;
+pub const SIXEL_FEATURE_ERROR: ::std::os::raw::c_uint = 4864;
+pub const SIXEL_STBI_ERROR: ::std::os::raw::c_uint = 6656;
+pub const SIXEL_STBIW_ERROR: ::std::os::raw::c_uint = 6912;
+pub const SIXEL_JPEG_ERROR: ::std::os::raw::c_uint = 5632;
+pub const SIXEL_PNG_ERROR: ::std::os::raw::c_uint = 5888;
+pub const SIXEL_GDK_ERROR: ::std::os::raw::c_uint = 6144;
+pub const SIXEL_GD_ERROR: ::std::os::raw::c_uint = 6400;
+pub const SIXEL_LIBC_ERROR: ::std::os::raw::c_uint = 5120;
+pub const SIXEL_CURL_ERROR: ::std::os::raw::c_uint = 5376;
+
 pub type Status<T> = Result<T, Error>;
 
 // NOTE: Sometimes a message can accompany errors.
