@@ -1,10 +1,10 @@
 [package]
-name = "sixel"
+name = "sixel-rs"
 version = "0.3.2"
-description = "A safe Rust wrapper for libsixel"
-authors = ["rabite0", "AdnoC <adam.r.cutler@gmail.com>"]
-homepage = "https://github.com/rabite0/sixel-rs"
-repository = "https://github.com/rabite0/sixel-rs"
+description = "A safe Rust wrapper for libsixel (active fork)"
+authors = ["rabite0", "AdnoC <adam.r.cutler@gmail.com>", "Orhun Parmaksız <orhunparmaksiz@gmail.com>"]
+homepage = "https://github.com/orhun/sixel-rs"
+repository = "https://github.com/orhun/sixel-rs"
 license = "MIT"
 keywords = ["terminal", "graphics", "image", "sixel"]
 categories = ["api-bindings", "graphics", "multimedia::images"]
