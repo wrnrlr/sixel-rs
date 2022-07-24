@@ -28,6 +28,8 @@ jobs:
           profile: minimal
           toolchain: ${{ matrix.TOOLCHAIN }}
           override: true
+      - name: Cache Cargo dependencies
+        uses: Swatinem/rust-cache@v2
       - name: Build
         uses: actions-rs/cargo@v1
         with:
@@ -46,6 +48,8 @@ jobs:
           toolchain: stable
           override: true
           components: rustfmt, clippy
+      - name: Cache Cargo dependencies
+        uses: Swatinem/rust-cache@v2
       - name: Check formatting
         uses: actions-rs/cargo@v1
         with:
