@@ -19,9 +19,9 @@ pub trait Pixel {
 
     fn channels_mut(&mut self) -> &mut [u8];
 
-    fn from_slice<'a>(_: &'a [u8]) -> &'a Self;
+    fn from_slice(_: &[u8]) -> &Self;
 
-    fn from_slice_mut<'a>(_: &'a mut [u8]) -> &'a mut Self;
+    fn from_slice_mut(_: &mut [u8]) -> &mut Self;
 }
 
 macro_rules! define_colors {
@@ -49,19 +49,17 @@ macro_rules! define_colors {
                     &mut self.data
                 }
 
-                fn from_slice<'a>(slice: &'a [u8]) -> &'a $ident {
-                    use std::mem;
+                fn from_slice(slice: &[u8]) -> &$ident {
                     assert_eq!(slice.len(), $channels);
                     unsafe {
-                        mem::transmute(slice.as_ptr())
+                        &mut *(slice.as_ptr() as *mut $ident)
                     }
                 }
 
                 fn from_slice_mut<'a>(slice: &'a mut [u8]) -> &'a mut $ident {
-                    use std::mem;
                     assert_eq!(slice.len(), $channels);
                     unsafe {
-                        mem::transmute(slice.as_ptr())
+                        &mut *(slice.as_ptr() as *mut $ident)
                     }
                 }
 

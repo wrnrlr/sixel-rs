@@ -69,8 +69,7 @@ impl Encoder {
 // Optflags
 impl Encoder {
     pub fn set_cancel(&self, cancel: Canceller) -> Status<()> {
-        let result =
-            unsafe { sixel_encoder_set_cancel_flag(self.encoder, (&cancel.flag).as_ptr()) };
+        let result = unsafe { sixel_encoder_set_cancel_flag(self.encoder, cancel.flag.as_ptr()) };
         status::from_libsixel(result)
     }
 
@@ -121,7 +120,7 @@ impl Encoder {
         self.set_num_colors_str(&num_colors.to_string())
     }
 
-    pub fn set_color_option<'a>(&self, option: optflags::ColorOption<'a>) -> Status<()> {
+    pub fn set_color_option(&self, option: optflags::ColorOption<'_>) -> Status<()> {
         use optflags::ColorOption::*;
         match option {
             Monochrome => self.use_monochrome(),
@@ -451,6 +450,12 @@ pub struct Canceller {
     flag: Box<Cell<raw::c_int>>,
 }
 
+impl Default for Canceller {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Canceller {
     pub fn new() -> Canceller {
         let flag: Box<Cell<raw::c_int>> = Box::new(Cell::new(0));
@@ -490,6 +495,12 @@ pub struct QuickFrameBuilder {
     width: usize,
     height: usize,
     format: PixelFormat,
+}
+
+impl Default for QuickFrameBuilder {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl QuickFrameBuilder {
