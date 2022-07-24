@@ -1,7 +1,5 @@
 #![allow(dead_code)]
 
-extern crate lazy_static;
-extern crate semver_parser;
 extern crate sixel_sys as sixel;
 
 pub mod encoder;
