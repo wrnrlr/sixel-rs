@@ -1,20 +1,20 @@
-use optflags;
-use pixelformat::PixelFormatChan;
-use sixel::*;
-use status::{self, Status};
+use crate::optflags;
+use crate::pixelformat::PixelFormatChan;
+use crate::status::{self, Status};
+use sixel_sys::*;
 use std::cell::Cell;
 use std::os::raw;
 use std::path::Path;
 
 pub struct Encoder {
-    encoder: *mut sixel::Encoder,
+    encoder: *mut sixel_sys::Encoder,
 }
 
 impl Encoder {
     pub fn new() -> Status<Encoder> {
         use std::ptr;
 
-        let mut encoder: *mut sixel::Encoder = ptr::null_mut() as *mut _;
+        let mut encoder: *mut sixel_sys::Encoder = ptr::null_mut() as *mut _;
 
         unsafe {
             let result = sixel_encoder_new(&mut encoder, ptr::null_mut() as *mut Allocator);
@@ -36,7 +36,7 @@ impl Encoder {
     }
 
     pub fn encode_file(&self, source: &Path) -> Status<()> {
-        use msc;
+        use crate::msc;
 
         let cstr = msc::path_to_c_str(source)?;
 
@@ -79,7 +79,7 @@ impl Encoder {
     }
 
     pub fn set_output(&self, file: &Path) -> Status<()> {
-        use msc;
+        use crate::msc;
 
         let cstr = msc::path_to_c_str(file)?;
 
@@ -87,7 +87,7 @@ impl Encoder {
     }
 
     pub fn set_bit_mode(&self, mode: optflags::BitMode) -> Status<()> {
-        use optflags::BitMode;
+        use crate::optflags::BitMode;
         use std::ptr;
 
         let mode_flag = match mode {
@@ -121,7 +121,7 @@ impl Encoder {
     }
 
     pub fn set_color_option(&self, option: optflags::ColorOption<'_>) -> Status<()> {
-        use optflags::ColorOption::*;
+        use crate::optflags::ColorOption::*;
         match option {
             Monochrome => self.use_monochrome(),
             Builtin(palette) => self.use_builtin_palette(palette),
@@ -131,7 +131,7 @@ impl Encoder {
     }
 
     fn use_mapfile(&self, file: &Path) -> Status<()> {
-        use msc;
+        use crate::msc;
 
         let cstr = msc::path_to_c_str(file)?;
 

@@ -1,4 +1,4 @@
-use sixel::PixelFormat;
+use sixel_sys::PixelFormat;
 use std::os::raw::c_int;
 
 pub trait PixelFormatChan {
@@ -7,7 +7,7 @@ pub trait PixelFormatChan {
 
 impl PixelFormatChan for PixelFormat {
     fn channels_per_pixel(self) -> c_int {
-        unsafe { sixel::sixel_helper_compute_depth(self) }
+        unsafe { sixel_sys::sixel_helper_compute_depth(self) }
     }
 }
 

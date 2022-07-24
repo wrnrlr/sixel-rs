@@ -1,4 +1,4 @@
-extern crate sixel_sys as sixel;
+pub use sixel_sys as sys;
 
 pub mod encoder;
 mod msc;

@@ -1,5 +1,4 @@
-use status;
-use status::Status;
+use crate::status::{self, Status};
 use std::ffi::CString;
 use std::path::Path;
 

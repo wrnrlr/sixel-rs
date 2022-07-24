@@ -44,7 +44,7 @@ pub enum Error {
 }
 
 #[doc(hidden)]
-pub fn from_libsixel(status: sixel::status::Status) -> Status<()> {
+pub fn from_libsixel(status: sixel_sys::status::Status) -> Status<()> {
     match status as u32 {
         SIXEL_OK => Ok(()),
         SIXEL_FALSE => Err(Error::False),

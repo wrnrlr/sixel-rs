@@ -1,4 +1,3 @@
-// use sixel::*;
 use std::path::Path;
 
 #[doc(hidden)]
