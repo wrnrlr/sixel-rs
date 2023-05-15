@@ -44,7 +44,7 @@ impl Encoder {
         status::from_libsixel(result)
     }
 
-    pub fn encode_bytes(&self, frame: QuickFrame) -> Status<()> {
+    pub fn encode_bytes(&self, frame: &QuickFrame) -> Status<()> {
         use std::os::raw::c_int;
         use std::os::raw::c_uchar;
 
